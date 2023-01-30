@@ -158,7 +158,8 @@ ggplot(rmse_350_new, aes(x = k_grid, y = rmse_350_out)) +
   theme_minimal() +
   theme(plot.title = element_text(face = "bold"))
 ```
-**Figure 5:** Plot showing RMSE for each value of K (from 2 to 150)
+**Figure 5:** 
+Plot showing RMSE for each value of K (from 2 to 150)
 
 Here, we can see which K value has the lowest RMSE, and this is the optimal value of K
 

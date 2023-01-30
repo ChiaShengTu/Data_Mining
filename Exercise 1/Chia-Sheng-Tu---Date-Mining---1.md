@@ -97,11 +97,11 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 6
+    ## [1] 53
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 8485.511
+    ## [1] 8481.191
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_1.4-1.png)
 
@@ -118,11 +118,11 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 23
+    ## [1] 5
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 20064.85
+    ## [1] 17185.43
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_2.4-1.png)
 
