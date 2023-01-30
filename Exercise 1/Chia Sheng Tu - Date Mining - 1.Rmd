@@ -197,7 +197,7 @@ ptest +
 
 ```
 
-**Figure 2:** Plot of the fitted model, predicted price and real price
+**Figure 6:** Plot of the fitted model, predicted price and real price
 
 
 ### Car trim level 65 AMG
