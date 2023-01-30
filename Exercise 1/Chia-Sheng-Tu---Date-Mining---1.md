@@ -1,7 +1,8 @@
 ## 1) Data visualization: flights at ABIA
 
 \*\*\*\*Question: What is the best Month to fly in and fly out to Austin
-to minimize delays?\*\*
+to minimize delays?\*\* To find the minimize delay time, set average
+delay time per mile = (ArrDelay + DepDelay + WeatherDelay)/Distance
 
     ## # A tibble: 7 x 2
     ##   Month avg_Delay
@@ -16,7 +17,7 @@ to minimize delays?\*\*
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%201-1.png)
 
-**Figure 1:** \#Plot for average delay time per mile bt month
+**Figure 1:** \#Plot for average delay time per mile by month
 
 Figure 1 refers to the best months to fly in and fly out to Austin to
 minimize delays are September and November. September has the lowest
@@ -97,11 +98,11 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 14
+    ## [1] 7
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 10076.76
+    ## [1] 8823.849
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_1.4-1.png)
 
@@ -118,11 +119,11 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 9
+    ## [1] 3
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 16034.36
+    ## [1] 17150.06
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_2.4-1.png)
 

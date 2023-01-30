@@ -16,6 +16,8 @@ library(dplyr)
 ```
 ## 1) Data visualization: flights at ABIA
 ****Question: What is the best Month to fly in and fly out to Austin to minimize delays?**
+To find the minimize delay time, 
+set average delay time per mile = (ArrDelay + DepDelay + WeatherDelay)/Distance
 ```{r problem 1, message=FALSE, echo=FALSE, warning=FALSE}
 ABIA = read.csv("Data\\ABIA.csv")
 # To find the minimize delay time 
@@ -50,7 +52,7 @@ ggplot(rank) +
 
 ```
 
-**Figure 1:** #Plot for average delay time per mile bt month
+**Figure 1:** #Plot for average delay time per mile by month
 
 Figure 1 refers to the best months to fly in and fly out to  Austin to minimize delays are September and November. September has the lowest delay time per mile (0.009). On the Other hand, December would be the worst time to fly, since the average delay time per mile is the highst among 12 months (0.077). The results seems reasonible. The demnd of flights in September might decreas, as September is the second month of the semester for most students. However, many people, not only students, are flying in/out to Austin due to Christmas and new year hoildays, the demand of flights increased.
 
