@@ -50,11 +50,9 @@ ggplot(rank) +
 
 ```
 
-```
 **Figure 1:** #Plot for average delay time per mile bt month
 
 Figure 1 refers to the best months to fly in and fly out to  Austin to minimize delays are September and November. September has the lowest delay time per mile (0.009). On the Other hand, December would be the worst time to fly, since the average delay time per mile is the highst among 12 months (0.077). The results seems reasonible. The demnd of flights in September might decreas, as September is the second month of the semester for most students. However, many people, not only students, are flying in/out to Austin due to Christmas and new year hoildays, the demand of flights increased.
-```
 
 ## 2) Wrangling the Olympics
 
@@ -119,7 +117,10 @@ ggplot(agetest) +
 Olympic Swimmers Changed Over Time")
 
 ```
-**Figure 3&4:** Line graph showing the change in average age of Olympic swimmers between 1600 - 2016
+
+
+**Figure 3&4:** 
+Line graph showing the change in average age of Olympic swimmers between 1600 - 2016
 How has the average age of Olympic swimmers changed over time? 
 Compared to early 1900's, the average age of Olympic swimmers has became bigger in 2000's. The average age in the early 1900's has the lowest value, and kept increasing until around 1920. After 1920, the the average age of Olympic swimmers stared to decreased until 1975.
 
@@ -264,6 +265,7 @@ ptest +
   theme(plot.title = element_text(face="bold"))
 
 ```
+
 **Figure 8:** Plot of the fitted model, predicted price and real price
 
 

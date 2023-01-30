@@ -16,9 +16,17 @@ to minimize delays?\*\*
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%201-1.png)
 
-    **Figure 1:** #Plot for average delay time per mile bt month
+**Figure 1:** \#Plot for average delay time per mile bt month
 
-    Figure 1 refers to the best months to fly in and fly out to  Austin to minimize delays are September and November. September has the lowest delay time per mile (0.009). On the Other hand, December would be the worst time to fly, since the average delay time per mile is the highst among 12 months (0.077). The results seems reasonible. The demnd of flights in September might decreas, as September is the second month of the semester for most students. However, many people, not only students, are flying in/out to Austin due to Christmas and new year hoildays, the demand of flights increased.
+Figure 1 refers to the best months to fly in and fly out to Austin to
+minimize delays are September and November. September has the lowest
+delay time per mile (0.009). On the Other hand, December would be the
+worst time to fly, since the average delay time per mile is the highst
+among 12 months (0.077). The results seems reasonible. The demnd of
+flights in September might decreas, as September is the second month of
+the semester for most students. However, many people, not only students,
+are flying in/out to Austin due to Christmas and new year hoildays, the
+demand of flights increased.
 
 ## 2) Wrangling the Olympics
 
@@ -62,6 +70,7 @@ Event Rowing Woman’s Coxed Fours has the highest standard deviation with
 #### C) How has the average age of Olympic swimmers changed over time? Does this trend look different depending on the gender?
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%202C-1.png)![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%202C-2.png)
+
 **Figure 3&4:** Line graph showing the change in average age of Olympic
 swimmers between 1600 - 2016 How has the average age of Olympic swimmers
 changed over time? Compared to early 1900’s, the average age of Olympic
@@ -88,11 +97,11 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 15
+    ## [1] 6
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 9947.547
+    ## [1] 8485.511
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_1.4-1.png)
 
@@ -109,13 +118,14 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 35
+    ## [1] 23
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 17656.6
+    ## [1] 20064.85
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_2.4-1.png)
+
 **Figure 8:** Plot of the fitted model, predicted price and real price
 
 **Result: Trim 350 yields a larger optimal value of K**
