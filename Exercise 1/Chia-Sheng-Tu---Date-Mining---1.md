@@ -97,15 +97,15 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 53
+    ## [1] 14
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 8481.191
+    ## [1] 10076.76
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_1.4-1.png)
 
-**Figure 2:** Plot of the fitted model, predicted price and real price
+**Figure 6:** Plot of the fitted model, predicted price and real price
 
 ### Car trim level 65 AMG
 
@@ -118,11 +118,11 @@ optimal value of K
 
 **Optimal value of K**
 
-    ## [1] 5
+    ## [1] 9
 
 **RMSE from the Optimal value of K**
 
-    ## [1] 17185.43
+    ## [1] 16034.36
 
 ![](Chia-Sheng-Tu---Date-Mining---1_files/figure-markdown_strict/problem%203_2.4-1.png)
 
