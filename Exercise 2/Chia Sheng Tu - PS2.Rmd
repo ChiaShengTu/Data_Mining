@@ -1,0 +1,62 @@
+---
+title: "Data Mining - PS2Q2"
+author: "Chia Sheng Tu"
+date: "2023-02-18"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(rsample)
+library(caret)
+library(modelr)
+library(parallel)
+library(foreach)
+library(dplyr)
+library(pROC)
+```
+## 2) Classification and retrospective sampling
+**Question:**
+```{r problem 2b test, message=FALSE, echo=FALSE, warning=FALSE}
+credit <- read.csv("Data\\german_credit.csv")
+default_data <- credit %>%
+  group_by(history) %>%
+  summarize(mean_default = mean(Default))
+
+# Create the bar plot
+ggplot(default_data, aes(x = history, y = mean_default) ) + geom_bar(stat = "identity") + labs(y = "Probability of Default", 
+       x = "Class of Credit History",
+       title = "Probability of Default by Credit History") + 
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+
+```
+
+
+According to the bar chart above, borrowers whose credit ratings classified as “good” have the highest possibility (60%) to default on the loan. On the other hand, borrowers with “poor” and “terrible” credit ratings, however, have lower default probability than borrowers with “good”.
+
+
+```{r problem 2c, message=FALSE, echo=FALSE, warning=FALSE}
+# split the train/test data
+credit_split =  initial_split(credit, prop=0.8)
+credit_train = training(credit_split)
+credit_test  = testing(credit_split)
+# building the model 
+logit_default = glm(Default~duration + amount + installment + age + history + purpose + foreign, data = credit_train, family = binomial)
+knitr::kable(coef(logit_default) %>% round(2))
+
+# Fit a logistic regression model
+model <- glm(Default ~ duration + amount + installment + age + history + purpose + foreign, data = credit_train, family = binomial)
+
+# Print the model summary
+summary(model)
+
+```
+
+The bank could not predict the outcome accurately based on class of credit history. Based on information above, the coefficient of "poor" and "terrible" credit history are negative, saying that people with bad credit history have lower chance to default on the loan.  
+
+For this reason, it may not be appropriate to use this data set alone for building a predictive model of "Default" to screen prospective borrowers into "high" versus "low" probability of default. The data is full of defaulted loans, creating biased estimator or even selection bias. The bank should use random sampling data than this "case-control" designed data.
+
+
