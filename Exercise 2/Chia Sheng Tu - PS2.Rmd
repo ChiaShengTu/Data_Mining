@@ -19,7 +19,7 @@ library(pROC)
 ```
 ## 2) Classification and retrospective sampling
 **Question:**
-```{r problem 2b test, message=FALSE, echo=FALSE, warning=FALSE}
+```{r problem 2_bar_chart, message=FALSE, echo=FALSE, warning=FALSE}
 credit <- read.csv("Data\\german_credit.csv")
 default_data <- credit %>%
   group_by(history) %>%
@@ -38,7 +38,7 @@ ggplot(default_data, aes(x = history, y = mean_default) ) + geom_bar(stat = "ide
 According to the bar chart above, borrowers whose credit ratings classified as “good” have the highest possibility (60%) to default on the loan. On the other hand, borrowers with “poor” and “terrible” credit ratings, however, have lower default probability than borrowers with “good”.
 
 
-```{r problem 2c, message=FALSE, echo=FALSE, warning=FALSE}
+```{r problem 2, message=FALSE, echo=FALSE, warning=FALSE}
 # split the train/test data
 credit_split =  initial_split(credit, prop=0.8)
 credit_train = training(credit_split)

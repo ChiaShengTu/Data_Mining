@@ -1,7 +1,7 @@
 ## 2) Classification and retrospective sampling
 
 **Question:**
-![](Chia-Sheng-Tu---PS2_files/figure-markdown_strict/problem%202b%20test-1.png)
+![](Chia-Sheng-Tu---PS2_files/figure-markdown_strict/problem%202_bar_chart-1.png)
 
 According to the bar chart above, borrowers whose credit ratings
 classified as “good” have the highest possibility (60%) to default on
@@ -19,7 +19,7 @@ ratings, however, have lower default probability than borrowers with
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">-0.73</td>
+<td style="text-align: right;">-0.87</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">duration</td>
@@ -31,7 +31,7 @@ ratings, however, have lower default probability than borrowers with
 </tr>
 <tr class="even">
 <td style="text-align: left;">installment</td>
-<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">age</td>
@@ -39,31 +39,31 @@ ratings, however, have lower default probability than borrowers with
 </tr>
 <tr class="even">
 <td style="text-align: left;">historypoor</td>
-<td style="text-align: right;">-1.22</td>
+<td style="text-align: right;">-1.27</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">historyterrible</td>
-<td style="text-align: right;">-2.07</td>
+<td style="text-align: right;">-1.99</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">purposeedu</td>
-<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.84</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">purposegoods/repair</td>
-<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.28</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">purposenewcar</td>
-<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">0.89</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">purposeusedcar</td>
-<td style="text-align: right;">-0.56</td>
+<td style="text-align: right;">-0.72</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">foreigngerman</td>
-<td style="text-align: right;">-1.14</td>
+<td style="text-align: right;">-1.33</td>
 </tr>
 </tbody>
 </table>
@@ -75,32 +75,32 @@ ratings, however, have lower default probability than borrowers with
     ## 
     ## Deviance Residuals: 
     ##     Min       1Q   Median       3Q      Max  
-    ## -2.0433  -0.8094  -0.5690   1.0049   2.4600  
+    ## -2.0237  -0.8188  -0.5610   0.9892   2.5521  
     ## 
     ## Coefficients:
     ##                       Estimate Std. Error z value Pr(>|z|)    
-    ## (Intercept)         -7.341e-01  5.385e-01  -1.363  0.17287    
-    ## duration             2.725e-02  9.049e-03   3.011  0.00260 ** 
-    ## amount               1.142e-04  4.149e-05   2.752  0.00593 ** 
-    ## installment          2.591e-01  8.681e-02   2.984  0.00284 ** 
-    ## age                 -2.378e-02  8.269e-03  -2.876  0.00403 ** 
-    ## historypoor         -1.222e+00  2.826e-01  -4.324 1.53e-05 ***
-    ## historyterrible     -2.065e+00  3.218e-01  -6.417 1.39e-10 ***
-    ## purposeedu           4.778e-01  4.358e-01   1.096  0.27289    
-    ## purposegoods/repair  1.942e-01  2.931e-01   0.663  0.50755    
-    ## purposenewcar        8.815e-01  3.138e-01   2.809  0.00497 ** 
-    ## purposeusedcar      -5.577e-01  3.970e-01  -1.405  0.16013    
-    ## foreigngerman       -1.138e+00  5.983e-01  -1.903  0.05707 .  
+    ## (Intercept)         -8.682e-01  5.281e-01  -1.644 0.100130    
+    ## duration             3.273e-02  9.169e-03   3.570 0.000357 ***
+    ## amount               8.907e-05  4.217e-05   2.112 0.034662 *  
+    ## installment          2.975e-01  8.545e-02   3.481 0.000499 ***
+    ## age                 -2.412e-02  8.101e-03  -2.977 0.002907 ** 
+    ## historypoor         -1.271e+00  2.870e-01  -4.428 9.52e-06 ***
+    ## historyterrible     -1.990e+00  3.213e-01  -6.195 5.82e-10 ***
+    ## purposeedu           8.390e-01  4.193e-01   2.001 0.045416 *  
+    ## purposegoods/repair  2.782e-01  2.909e-01   0.956 0.338889    
+    ## purposenewcar        8.881e-01  3.132e-01   2.835 0.004579 ** 
+    ## purposeusedcar      -7.203e-01  4.089e-01  -1.761 0.078158 .  
+    ## foreigngerman       -1.334e+00  6.773e-01  -1.970 0.048838 *  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
     ## (Dispersion parameter for binomial family taken to be 1)
     ## 
     ##     Null deviance: 984.07  on 799  degrees of freedom
-    ## Residual deviance: 852.83  on 788  degrees of freedom
-    ## AIC: 876.83
+    ## Residual deviance: 850.69  on 788  degrees of freedom
+    ## AIC: 874.69
     ## 
-    ## Number of Fisher Scoring iterations: 4
+    ## Number of Fisher Scoring iterations: 5
 
 The bank could not predict the outcome accurately based on class of
 credit history. Based on information above, the coefficient of “poor”
