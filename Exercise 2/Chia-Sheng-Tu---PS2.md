@@ -1,6 +1,22 @@
-## 2) Classification and retrospective sampling
+## Problem 1: Saratoga House Prices
 
-**Question:**
+The linear model outperformed the medium linear model by: Price =
+lotSize + age + land value + living area + bedroom + bathroom + room +
+heating + waterfront + new building + central air, which was found using
+stepwise regression.
+
+Using the cross-validated RMSE, we found that the RMSE for the linear
+medium model was 69966, while the RMSE for the linear model we selected
+was 63280. The RMSE for the KNN model was 69919, which was selected by
+repeated cross-validation and then modded to the test set. This means
+that the linear model we chose was the best model for predicting the
+market value of Saratoga homes. For the tax authorities, it is clear
+that there are important factors in determining the value of a property
+compared to the medium model: the value of the land, the waterfront
+property, and finally whether the house is new construction.
+
+## Problem 2: Classification and retrospective sampling
+
 ![](Chia-Sheng-Tu---PS2_files/figure-markdown_strict/problem%202_bar_chart-1.png)
 
 According to the bar chart above, borrowers whose credit ratings
@@ -19,7 +35,7 @@ ratings, however, have lower default probability than borrowers with
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">-0.87</td>
+<td style="text-align: right;">-0.75</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">duration</td>
@@ -31,39 +47,39 @@ ratings, however, have lower default probability than borrowers with
 </tr>
 <tr class="even">
 <td style="text-align: left;">installment</td>
-<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.25</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">age</td>
-<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">-0.03</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">historypoor</td>
-<td style="text-align: right;">-1.27</td>
+<td style="text-align: right;">-0.88</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">historyterrible</td>
-<td style="text-align: right;">-1.99</td>
+<td style="text-align: right;">-1.75</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">purposeedu</td>
-<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.74</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">purposegoods/repair</td>
-<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">-0.15</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">purposenewcar</td>
-<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.66</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">purposeusedcar</td>
-<td style="text-align: right;">-0.72</td>
+<td style="text-align: right;">-1.07</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">foreigngerman</td>
-<td style="text-align: right;">-1.33</td>
+<td style="text-align: right;">-1.08</td>
 </tr>
 </tbody>
 </table>
@@ -75,30 +91,30 @@ ratings, however, have lower default probability than borrowers with
     ## 
     ## Deviance Residuals: 
     ##     Min       1Q   Median       3Q      Max  
-    ## -2.0237  -0.8188  -0.5610   0.9892   2.5521  
+    ## -2.2675  -0.7934  -0.5336   0.9909   2.4737  
     ## 
     ## Coefficients:
     ##                       Estimate Std. Error z value Pr(>|z|)    
-    ## (Intercept)         -8.682e-01  5.281e-01  -1.644 0.100130    
-    ## duration             3.273e-02  9.169e-03   3.570 0.000357 ***
-    ## amount               8.907e-05  4.217e-05   2.112 0.034662 *  
-    ## installment          2.975e-01  8.545e-02   3.481 0.000499 ***
-    ## age                 -2.412e-02  8.101e-03  -2.977 0.002907 ** 
-    ## historypoor         -1.271e+00  2.870e-01  -4.428 9.52e-06 ***
-    ## historyterrible     -1.990e+00  3.213e-01  -6.195 5.82e-10 ***
-    ## purposeedu           8.390e-01  4.193e-01   2.001 0.045416 *  
-    ## purposegoods/repair  2.782e-01  2.909e-01   0.956 0.338889    
-    ## purposenewcar        8.881e-01  3.132e-01   2.835 0.004579 ** 
-    ## purposeusedcar      -7.203e-01  4.089e-01  -1.761 0.078158 .  
-    ## foreigngerman       -1.334e+00  6.773e-01  -1.970 0.048838 *  
+    ## (Intercept)         -7.490e-01  5.531e-01  -1.354  0.17573    
+    ## duration             3.018e-02  9.438e-03   3.198  0.00138 ** 
+    ## amount               8.702e-05  4.280e-05   2.033  0.04203 *  
+    ## installment          2.547e-01  8.864e-02   2.874  0.00405 ** 
+    ## age                 -2.640e-02  8.570e-03  -3.081  0.00206 ** 
+    ## historypoor         -8.806e-01  2.806e-01  -3.138  0.00170 ** 
+    ## historyterrible     -1.752e+00  3.225e-01  -5.433 5.54e-08 ***
+    ## purposeedu           7.427e-01  4.198e-01   1.769  0.07686 .  
+    ## purposegoods/repair -1.479e-01  2.898e-01  -0.510  0.60976    
+    ## purposenewcar        6.640e-01  3.140e-01   2.115  0.03446 *  
+    ## purposeusedcar      -1.073e+00  4.227e-01  -2.538  0.01115 *  
+    ## foreigngerman       -1.078e+00  5.854e-01  -1.842  0.06547 .  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
     ## (Dispersion parameter for binomial family taken to be 1)
     ## 
-    ##     Null deviance: 984.07  on 799  degrees of freedom
-    ## Residual deviance: 850.69  on 788  degrees of freedom
-    ## AIC: 874.69
+    ##     Null deviance: 956.18  on 799  degrees of freedom
+    ## Residual deviance: 824.76  on 788  degrees of freedom
+    ## AIC: 848.76
     ## 
     ## Number of Fisher Scoring iterations: 5
 
