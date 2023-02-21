@@ -1,19 +1,19 @@
 ## Problem 1: Saratoga House Prices
 
-The linear model outperformed the medium linear model by: Price =
-lotSize + age + land value + living area + bedroom + bathroom + room +
-heating + waterfront + new building + central air, which was found using
-stepwise regression.
+The linear model which outperformed the medium linear model is: price =
+lotSize + age + landValue + livingArea + bedrooms + bathrooms + rooms +
+heating + waterfront + newConstruction + centralAir (by using Stepwise
+regression)
 
-Using the cross-validated RMSE, we found that the RMSE for the linear
-medium model was 69966, while the RMSE for the linear model we selected
-was 63280. The RMSE for the KNN model was 69919, which was selected by
-repeated cross-validation and then modded to the test set. This means
-that the linear model we chose was the best model for predicting the
-market value of Saratoga homes. For the tax authorities, it is clear
-that there are important factors in determining the value of a property
-compared to the medium model: the value of the land, the waterfront
-property, and finally whether the house is new construction.
+By using a cross validated RMSE, the linear medium model had a RMSE of
+68077.25 and our chosen linear model had a RMSE of 63437.27. The KNN
+model had a RMSE of 66280.28 which was selected using repeated cross
+validation and then refitted to the testing set. Our chosen linear model
+is the best at predicting market values for properties in Saratoga (do
+better at achieving lower out-of-sample mean-squared error). For a
+taxing authority, it’s clear that there are some important factors in
+determining property value compared to the medium model: Land Value,
+Waterfront Property and whether a house is a new construction.
 
 ## Problem 2: Classification and retrospective sampling
 
@@ -23,7 +23,7 @@ According to the bar chart above, borrowers whose credit ratings
 classified as “good” have the highest possibility (60%) to default on
 the loan. On the other hand, borrowers with “poor” and “terrible” credit
 ratings, however, have lower default probability than borrowers with
-“good”.
+“good” credit ratings.
 
 <table>
 <thead>
