@@ -5,15 +5,16 @@ lotSize + age + landValue + livingArea + bedrooms + bathrooms + rooms +
 heating + waterfront + newConstruction + centralAir (by using Stepwise
 regression)
 
-By using a cross validated RMSE, the linear medium model had a RMSE of
-68077.25 and our chosen linear model had a RMSE of 63437.27. The KNN
-model had a RMSE of 66280.28 which was selected using repeated cross
-validation and then refitted to the testing set. Our chosen linear model
-is the best at predicting market values for properties in Saratoga (do
-better at achieving lower out-of-sample mean-squared error). For a
-taxing authority, it’s clear that there are some important factors in
-determining property value compared to the medium model: Land Value,
-Waterfront Property and whether a house is a new construction.
+By using a cross validated RMSE, we found that the linear medium model
+had a RMSE of 68077.25 and our chosen linear model had a RMSE of
+63437.27. The KNN model had a RMSE of 66280.28 which was selected by
+using repeated cross validation and then refitted to the testing set.
+Our chosen linear model is the best at predicting market values for
+properties in Saratoga (do better at achieving lower out-of-sample
+mean-squared error). For a taxing authority, it is clear that there are
+some important factors in determining property value compared to the
+medium model, including Land Value, Waterfront Property and whether a
+house is a new construction.
 
 ## Problem 2: Classification and retrospective sampling
 
@@ -119,9 +120,9 @@ ratings, however, have lower default probability than borrowers with
     ## Number of Fisher Scoring iterations: 5
 
 The bank could not predict the outcome accurately based on class of
-credit history. Based on information above, the coefficient of “poor”
-and “terrible” credit history are negative, saying that people with bad
-credit history have lower chance to default on the loan.
+credit history. Based on information above, the coefficients of “poor”
+and “terrible” credit history are both negative, saying that borrowers
+with bad credit history have lower chance to default on the loan.
 
 For this reason, it may not be appropriate to use this data set alone
 for building a predictive model of “Default” to screen prospective

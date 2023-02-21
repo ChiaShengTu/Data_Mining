@@ -18,20 +18,12 @@ library(dplyr)
 library(pROC)
 library(class)
 library(lattice)
+library(mosaic)
 ```
 ## Problem 1: Saratoga House Prices
 
 ```{r Number 1, echo=FALSE, include=FALSE, warning=FALSE}
-library(tidyverse)
-library(ggplot2)
-library(rsample)  
-library(caret)
-library(modelr)
-library(parallel)
-library(foreach)
-library(mosaic)
-library(class)
-library(lattice)
+
 set.seed(123)
 #Data Wrangling 
 #split the data
@@ -124,18 +116,20 @@ finalKNNrmse = colMeans(rmse_knn)
 The linear model which outperformed the medium linear model is: 
 price = lotSize + age + landValue + livingArea + bedrooms + bathrooms + rooms  + heating + waterfront + newConstruction + centralAir  (by using Stepwise regression)
 
-By using a cross validated RMSE, the linear medium model had a RMSE of 68077.25 and our chosen linear model had a RMSE of 63437.27. The KNN model had  a RMSE of 66280.28 which was selected using repeated cross validation and then refitted to the testing set. Our chosen linear model is the best at predicting market values for properties in Saratoga (do better at achieving lower out-of-sample mean-squared error). For a taxing authority, it's clear that there are some important factors in determining property value compared to the medium model: Land Value, Waterfront Property and whether a house is a new construction. 
+By using a cross validated RMSE, we found that the linear medium model had a RMSE of 68077.25 and our chosen linear model had a RMSE of 63437.27. The KNN model had  a RMSE of 66280.28 which was selected by using repeated cross validation and then refitted to the testing set. Our chosen linear model is the best at predicting market values for properties in Saratoga (do better at achieving lower out-of-sample mean-squared error). For a taxing authority, it is clear that there are some important factors in determining property value compared to the medium model, including Land Value, Waterfront Property and whether a house is a new construction. 
 
 
 ## Problem 2: Classification and retrospective sampling
 
 ```{r problem 2_bar_chart, message=FALSE, echo=FALSE, warning=FALSE}
 credit <- read.csv("Data\\german_credit.csv")
+#Group the data by "history" 
+#calculate average default by each credit history class 
 default_mean <- credit %>%
   group_by(history) %>%
   summarize(mean_default = mean(Default))
 
-# Create the bar plot
+#Bar plot
 ggplot(default_mean, aes(x = history, y = mean_default) ) + geom_bar(stat = "identity") + labs(y = "Probability of Default", 
        x = "Class of Credit History",
        title = "Probability of Default by Credit History", 
@@ -149,24 +143,26 @@ ggplot(default_mean, aes(x = history, y = mean_default) ) + geom_bar(stat = "ide
 According to the bar chart above, borrowers whose credit ratings classified as “good” have the highest possibility (60%) to default on the loan. On the other hand, borrowers with “poor” and “terrible” credit ratings, however, have lower default probability than borrowers with “good” credit ratings.
 
 
-```{r problem 2, message=FALSE, echo=FALSE, warning=FALSE}
-# split the train/test data
+```{r problem 2_model, message=FALSE, echo=FALSE, warning=FALSE}
+#Split the train/testing data
 credit_split =  initial_split(credit, prop=0.8)
 credit_train = training(credit_split)
 credit_test  = testing(credit_split)
-# building the model 
+
+#Build the model 
 logit_default = glm(Default~duration + amount + installment + age + history + purpose + foreign, data = credit_train, family = binomial)
 knitr::kable(coef(logit_default) %>% round(2))
 
-# Fit a logistic regression model
+#Fit in a logistic regression model
 model <- glm(Default ~ duration + amount + installment + age + history + purpose + foreign, data = credit_train, family = binomial)
 
-# Print the model summary
+#Model summary
 summary(model)
+
 
 ```
 
-The bank could not predict the outcome accurately based on class of credit history. Based on information above, the coefficient of "poor" and "terrible" credit history are negative, saying that people with bad credit history have lower chance to default on the loan.  
+The bank could not predict the outcome accurately based on class of credit history. Based on information above, the coefficients of "poor" and "terrible" credit history are both negative, saying that borrowers with bad credit history have lower chance to default on the loan.  
 
 For this reason, it may not be appropriate to use this data set alone for building a predictive model of "Default" to screen prospective borrowers into "high" versus "low" probability of default. The data is full of defaulted loans, creating biased estimator or even selection bias. The bank should use random sampling data than this "case-control" designed data.
 
