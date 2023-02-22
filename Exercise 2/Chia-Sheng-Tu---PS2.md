@@ -151,21 +151,32 @@ baseline 1, baseline 2, and the best model respectively. We could find
 that the accuracies of baseline 2 and the best model are quite close. It
 could mean that in this case maybe adding all variables into the
 regression is good enough to have a prediction. Both of them are better
-than baseline 1 apparently. **Model Validation: Step 1** In this
-section, we validate our best model by testing on the hotels\_val data
-and draw the graph of the ROC curve of this prediction using the
-threshold of 0.01 to 0.9.
+than baseline 1 apparently.
+
+    ## [1] 91.42
+
+    ## [1] 92.56
+
+    ## [1] 92.74
+
+**Model Validation: Step 1** In this section, we validate our best model
+by testing on the hotels\_val data and draw the graph of the ROC curve
+of this prediction using the threshold of 0.01 to 0.9.
 
 Below is our ROC curve for the best model. By observing the shape of the
 ROC, since the area below the line is larger than 0.5, we can say this
-model can predict the result at a certain level. **Model Validation:
-Step 2** In Step 2, we do 20 folds cross-validation using the
-hotels\_val data, and we use a sample to create random fold numbers 1 to
-20 onto each data entry. For each fold, we store the sum of predicted
-bookings with children and the actual bookings with children to see how
-well is this model performing.
+model can predict the result at a certain level.
+
+![](Chia-Sheng-Tu---PS2_files/figure-markdown_strict/problem%203_model1-1.png)
+
+**Model Validation: Step 2** In Step 2, we do 20 folds cross-validation
+using the hotels\_val data, and we use a sample to create random fold
+numbers 1 to 20 onto each data entry. For each fold, we store the sum of
+predicted bookings with children and the actual bookings with children
+to see how well is this model performing.
 
 Below is the line graph that shows the sum of predicted bookings with
 children and the actual bookings with children. The predicted values are
 not always close to the actual values, especially in the extreme value.
 However, it can still have a precise prediction in some folds.
+![](Chia-Sheng-Tu---PS2_files/figure-markdown_strict/problem%203_model2-1.png)
