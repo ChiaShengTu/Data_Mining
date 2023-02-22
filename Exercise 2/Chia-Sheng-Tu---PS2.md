@@ -130,3 +130,42 @@ borrowers into “high” versus “low” probability of default. The data is
 full of defaulted loans, creating biased estimator or even selection
 bias. The bank should use random sampling data than this “case-control”
 designed data.
+
+## Problem 3: Children and hotel reservations
+
+**Model Building** First of all, we add some variables to the dataset
+for constructing our best model, then we split the data into training
+and testing datasets. Moreover, we build baseline model 1, baseline
+model 2, and our best model. We try different ways to construct a better
+model instead of including all variables. We add year and month
+variables for time-fixed effects. In addition, we add the quadratic
+terms for average\_daily\_rate, lead\_time, stays\_in\_week\_nights, and
+stays\_in\_weekend\_nights. This makes the effect of these variables
+some flexibility. Lastly, we exclude some variables that seem irrelevant
+to the number of children, which are adults, is\_repeated\_guest,
+previous\_bookings\_not\_canceled, previous\_cancellations,
+deposit\_type, and days\_in\_waiting\_list. After constructing our best
+model, we generate the confusion matrixes to compare the out-of-sample
+performance of these models. Below are the accuracies of the models,
+baseline 1, baseline 2, and the best model respectively. We could find
+that the accuracies of baseline 2 and the best model are quite close. It
+could mean that in this case maybe adding all variables into the
+regression is good enough to have a prediction. Both of them are better
+than baseline 1 apparently. **Model Validation: Step 1** In this
+section, we validate our best model by testing on the hotels\_val data
+and draw the graph of the ROC curve of this prediction using the
+threshold of 0.01 to 0.9.
+
+Below is our ROC curve for the best model. By observing the shape of the
+ROC, since the area below the line is larger than 0.5, we can say this
+model can predict the result at a certain level. **Model Validation:
+Step 2** In Step 2, we do 20 folds cross-validation using the
+hotels\_val data, and we use a sample to create random fold numbers 1 to
+20 onto each data entry. For each fold, we store the sum of predicted
+bookings with children and the actual bookings with children to see how
+well is this model performing.
+
+Below is the line graph that shows the sum of predicted bookings with
+children and the actual bookings with children. The predicted values are
+not always close to the actual values, especially in the extreme value.
+However, it can still have a precise prediction in some folds.

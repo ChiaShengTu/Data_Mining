@@ -19,6 +19,8 @@ library(pROC)
 library(class)
 library(lattice)
 library(mosaic)
+library(lubridate)
+library(gamlr)
 ```
 ## Problem 1: Saratoga House Prices
 
@@ -165,5 +167,118 @@ summary(model)
 The bank could not predict the outcome accurately based on class of credit history. Based on information above, the coefficients of "poor" and "terrible" credit history are both negative, saying that borrowers with bad credit history have lower chance to default on the loan.  
 
 For this reason, it may not be appropriate to use this data set alone for building a predictive model of "Default" to screen prospective borrowers into "high" versus "low" probability of default. The data is full of defaulted loans, creating biased estimator or even selection bias. The bank should use random sampling data than this "case-control" designed data.
+
+
+## Problem 3: Children and hotel reservations
+```{r Number 3, echo=FALSE, include=FALSE, warning=FALSE}
+hotels_dev<- read.csv("Data\\hotels_dev.csv")
+hotels_val<- read.csv("Data\\hotels_val.csv")
+
+
+###Model building
+hotels_dev= hotels_dev %>%
+    mutate(year=as.character(year(arrival_date)))%>%
+    mutate(month=as.character(month(arrival_date)))
+
+                              
+hotels_val= hotels_val %>%
+   mutate(year=as.character(year(arrival_date)))%>%
+   mutate(month=as.character(month(arrival_date)))
+
+
+#split the "dev" data
+hotel_dev_split = initial_split(hotels_dev, prop = 0.8)
+hotel_dev_train = training(hotel_dev_split)
+hotel_dev_test = testing(hotel_dev_split)
+
+#build models
+#baseline 1
+hotel_baseline1 = glm(children ~ market_segment + adults + customer_type + is_repeated_guest, data = hotel_dev_train, family = binomial)
+
+#baseline 2
+hotel_baseline2 = glm(children ~ . - arrival_date - year - month, data = hotel_dev_train, family = binomial)
+
+#best model
+hotel_best = glm(children ~ . - arrival_date - is_repeated_guest - previous_bookings_not_canceled - previous_cancellations - deposit_type - days_in_waiting_list + average_daily_rate:average_daily_rate + lead_time:lead_time + stays_in_week_nights:stays_in_week_nights + stays_in_weekend_nights:stays_in_weekend_nights +adults:adults , data = hotel_dev_train, family = binomial)
+
+#create confusion matrix
+#for model 1
+phat_baseline1 = predict(hotel_baseline1, hotel_dev_test, type = "response")
+yhat_baseline1 = ifelse(phat_baseline1>0.3, 1, 0)
+confusion_baseline1 = table(y = hotel_dev_test$children, yhat = yhat_baseline1)
+
+#for model 2
+phat_baseline2 = predict(hotel_baseline2, hotel_dev_test, type = "response")
+yhat_baseline2 = ifelse(phat_baseline2>0.3, 1, 0)
+confusion_baseline2 = table(y = hotel_dev_test$children, yhat = yhat_baseline2)
+
+#for the best model
+phat_best = predict(hotel_best, hotel_dev_test, type = "response")
+yhat_best = ifelse(phat_best>0.3, 1, 0)
+confusion_best = table(y = hotel_dev_test$children, yhat = yhat_best)
+
+#accuracy of the models, baseline1, baseline2, best model respectively
+round(sum(diag(confusion_baseline1))/sum(confusion_baseline1) * 100, 2)
+round(sum(diag(confusion_baseline2))/sum(confusion_baseline2) * 100, 2)
+round(sum(diag(confusion_best))/sum(confusion_best) * 100, 2)
+
+
+
+### Model Validation: Step 1
+
+#validate our best model using the val data
+phat_best_val = predict(hotel_best, hotels_val, type = "response")
+
+#plot the ROC curve
+t = rep(1:90)/100
+roc_plot = foreach(t = t, .combine='rbind')%do%{
+  yhat_best_val = ifelse(phat_best_val >= t, 1, 0)
+  confusion_best_val = table(y=hotels_val$children, yhat=yhat_best_val)
+  TPR = confusion_best_val[2,2]/(confusion_best_val[2,2]+confusion_best_val[2,1])
+  FPR = confusion_best_val[1,2]/(confusion_best_val[1,1]+confusion_best_val[1,2]) 
+  c(t=t, TPR = TPR, FPR = FPR)
+} %>% as.data.frame()
+
+ggplot(roc_plot) +
+  geom_line(aes(x=FPR, y=TPR)) +
+  labs(y="True Positive Rate", x = "False Positive Rate", title = "ROC Curve for the Best Model")+
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+
+
+### Model Validation: Step 2
+
+#Generate 20 folds
+hotel_cv = hotels_val %>%
+  mutate(fold = rep(1:20, length=nrow(hotels_val))%>%sample())
+
+#plot the line graph of actual and predicted value 
+hotel_cv = foreach(i = 1:20, .combine='rbind')  %do% {
+  hotel_cv_test = filter(hotel_cv, fold == i)
+  hotel_cv_train = filter (hotel_cv, fold != i)
+  hotel_cv_model = glm(children ~ . - arrival_date - is_repeated_guest - previous_bookings_not_canceled - previous_cancellations - deposit_type - days_in_waiting_list + average_daily_rate:average_daily_rate + lead_time:lead_time + stays_in_week_nights:stays_in_week_nights + stays_in_weekend_nights:stays_in_weekend_nights +adults:adults , data = hotel_dev_train, family = binomial)
+  hotel_cv_phat = predict(hotel_cv_model, hotel_cv_test, type = "response")
+  c(y=sum(hotel_cv_test$children), y_hat=sum(hotel_cv_phat), fold =i)
+} %>% as.data.frame()
+
+ggplot(hotel_cv) +
+  geom_line(aes(x=fold, y=y, color = "Actual")) +
+  geom_line(aes(x=fold, y=y_hat, color = "Expected")) +
+  labs(y="Numbers of Bookings", x = "Fold", title = "Actual vs. Expected number of bookings With Children")+
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))+
+  guides(color = guide_legend(title=""))
+```
+**Model Building**
+First of all, we add some variables to the dataset for constructing our best model, then we split the data into training and testing datasets. Moreover, we build baseline model 1, baseline model 2, and our best model. We try different ways to construct a better model instead of including all variables. We add year and month variables for time-fixed effects. In addition, we add the quadratic terms for average_daily_rate, lead_time, stays_in_week_nights, and stays_in_weekend_nights. This makes the effect of these variables some flexibility. Lastly, we exclude some variables that seem irrelevant to the number of children, which are adults, is_repeated_guest, previous_bookings_not_canceled, previous_cancellations, deposit_type, and days_in_waiting_list. 
+After constructing our best model, we generate the confusion matrixes to compare the out-of-sample performance of these models.
+Below are the accuracies of the models, baseline 1, baseline 2, and the best model respectively. We could find that the accuracies of baseline 2 and the best model are quite close. It could mean that in this case maybe adding all variables into the regression is good enough to have a prediction. Both of them are better than baseline 1 apparently.
+**Model Validation: Step 1**
+In this section, we validate our best model by testing on the hotels_val data and draw the graph of the ROC curve of this prediction using the threshold of 0.01 to 0.9. 
+
+Below is our ROC curve for the best model. By observing the shape of the ROC, since the area below the line is larger than 0.5, we can say this model can predict the result at a certain level.
+**Model Validation: Step 2**
+In Step 2, we do 20 folds cross-validation using the hotels_val data, and we use a sample to create random fold numbers 1 to 20 onto each data entry. For each fold, we store the sum of predicted bookings with children and the actual bookings with children to see how well is this model performing. 
+
+Below is the line graph that shows the sum of predicted bookings with children and the actual bookings with children. The predicted values are not always close to the actual values, especially in the extreme value. However, it can still have a precise prediction in some folds.
 
 
