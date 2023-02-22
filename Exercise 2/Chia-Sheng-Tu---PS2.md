@@ -16,15 +16,16 @@ some important factors in determining property value compared to the
 medium model, including Land Value, Waterfront Property and whether a
 house is a new construction.
 
-## Problem 2: Classification and retrospective sampling
+## Problem 2: Classification and Retrospective Sampling
 
 ![](Chia-Sheng-Tu---PS2_files/figure-markdown_strict/problem%202_bar_chart-1.png)
 
-According to the bar chart above, borrowers whose credit ratings
-classified as “good” have the highest possibility (60%) to default on
-the loan. On the other hand, borrowers with “poor” and “terrible” credit
-ratings, however, have lower default probability than borrowers with
-“good” credit ratings.
+**Figure: Bar Plot of Default Probability by Credit History** According
+to the bar chart above, borrowers whose credit ratings classified as
+“good” have the highest possibility (60%) to default on the loan. On the
+other hand, borrowers with “poor” and “terrible” credit ratings,
+however, have lower default probability than borrowers with “good”
+credit ratings.
 
 <table>
 <thead>
@@ -131,7 +132,7 @@ full of defaulted loans, creating biased estimator or even selection
 bias. The bank should use random sampling data than this “case-control”
 designed data.
 
-## Problem 3: Children and hotel reservations
+## Problem 3: Children and Hotel Reservations
 
 **Model Building** First of all, we add some variables to the dataset
 for constructing our best model, then we split the data into training

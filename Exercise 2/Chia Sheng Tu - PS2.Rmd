@@ -121,7 +121,7 @@ price = lotSize + age + landValue + livingArea + bedrooms + bathrooms + rooms  +
 By using a cross validated RMSE, we found that the linear medium model had a RMSE of 68077.25 and our chosen linear model had a RMSE of 63437.27. The KNN model had  a RMSE of 66280.28 which was selected by using repeated cross validation and then refitted to the testing set. Our chosen linear model is the best at predicting market values for properties in Saratoga (do better at achieving lower out-of-sample mean-squared error). For a taxing authority, it is clear that there are some important factors in determining property value compared to the medium model, including Land Value, Waterfront Property and whether a house is a new construction. 
 
 
-## Problem 2: Classification and retrospective sampling
+## Problem 2: Classification and Retrospective Sampling
 
 ```{r problem 2_bar_chart, message=FALSE, echo=FALSE, warning=FALSE}
 credit <- read.csv("Data\\german_credit.csv")
@@ -141,7 +141,7 @@ ggplot(default_mean, aes(x = history, y = mean_default) ) + geom_bar(stat = "ide
 
 ```
 
-
+**Figure: Bar Plot of Default Probability by Credit History**
 According to the bar chart above, borrowers whose credit ratings classified as “good” have the highest possibility (60%) to default on the loan. On the other hand, borrowers with “poor” and “terrible” credit ratings, however, have lower default probability than borrowers with “good” credit ratings.
 
 
@@ -169,7 +169,7 @@ The bank could not predict the outcome accurately based on class of credit histo
 For this reason, it may not be appropriate to use this data set alone for building a predictive model of "Default" to screen prospective borrowers into "high" versus "low" probability of default. The data is full of defaulted loans, creating biased estimator or even selection bias. The bank should use random sampling data than this "case-control" designed data.
 
 
-## Problem 3: Children and hotel reservations
+## Problem 3: Children and Hotel Reservations
 **Model Building**
 First of all, we add some variables to the dataset for constructing our best model, then we split the data into training and testing datasets. Moreover, we build baseline model 1, baseline model 2, and our best model. We try different ways to construct a better model instead of including all variables. We add year and month variables for time-fixed effects. In addition, we add the quadratic terms for average_daily_rate, lead_time, stays_in_week_nights, and stays_in_weekend_nights. This makes the effect of these variables some flexibility. Lastly, we exclude some variables that seem irrelevant to the number of children, which are adults, is_repeated_guest, previous_bookings_not_canceled, previous_cancellations, deposit_type, and days_in_waiting_list. 
 After constructing our best model, we generate the confusion matrixes to compare the out-of-sample performance of these models.
